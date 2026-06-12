@@ -25,6 +25,7 @@ menu = st.sidebar.radio(
     "Navigation",
     [
         "Home",
+        "No-Show Prediction",
         "Demand Forecasting"
     ]
 )
@@ -69,7 +70,21 @@ if menu == "Home":
             label="Forecasting R²",
             value="0.340"
         )
+# =========================
+# NO-SHOW PREDICTION PAGE
+# =========================
 
+elif menu == "No-Show Prediction":
+
+    st.title("🤖 No-Show Prediction")
+
+    st.write(
+        "Predict whether a patient is likely to miss an appointment."
+    )
+
+    st.info(
+        "No-Show Prediction module will be connected to the XGBoost model."
+    )
 # =========================
 # FORECASTING PAGE
 # =========================
@@ -159,5 +174,5 @@ elif menu == "Demand Forecasting":
         prediction = forecast_model.predict(input_df)
 
         st.success(
-            f"Predicted Appointments: {int(prediction[0])}"
-        )
+    f"Predicted Appointments: {int(prediction[0])}"
+)
