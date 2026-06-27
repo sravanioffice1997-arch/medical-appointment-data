@@ -69,18 +69,25 @@ Additional features created include:
 
 ## 1. No-Show Prediction
 
-**Algorithm**
+Three classification algorithms were developed and evaluated to predict whether a patient would miss a scheduled medical appointment.
 
+### Models Evaluated
+
+* Logistic Regression
+* Random Forest Classifier
 * XGBoost Classifier
 
-**Evaluation Metrics**
+### Model Performance
 
-| Metric   | Score     |
-| -------- | --------- |
-| F1 Score | **0.629** |
-| ROC-AUC  | **0.783** |
+| Model                                   |  F1 Score |   ROC-AUC |
+| --------------------------------------- | --------: | --------: |
+| Logistic Regression                     |     0.514 |     0.662 |
+| Random Forest Classifier                |     0.610 |     0.772 |
+| **XGBoost Classifier (Selected Model)** | **0.629** | **0.783** |
 
----
+**Final Model Selected:** XGBoost Classifier
+
+The XGBoost Classifier achieved the highest F1 Score and ROC-AUC among the evaluated models, making it the best-performing model for predicting appointment no-shows.
 
 ## 2. Demand Forecasting
 
