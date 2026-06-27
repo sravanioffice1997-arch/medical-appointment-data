@@ -171,8 +171,3 @@ Run the Streamlit application:
 ```bash
 streamlit run app.py
 ```
-
-
----
-
-## ⭐ If you found this project useful, consider giving the repository a star!
