@@ -6,14 +6,27 @@ A machine learning project for a rehabilitation clinic that predicts:
 
 Includes a trained model pipeline (Jupyter/Colab notebook) and an interactive **Streamlit dashboard** for clinic staff.
 
-## 🎯 Results
+## 📊 Dataset
 
-| Model | Metric | Score |
-|---|---|---|
-| No-Show Classifier (XGBoost) | F1-score | 0.63 |
-| No-Show Classifier (XGBoost) | ROC-AUC | 0.78 |
-| Demand Forecaster | R² | 0.62 |
-| Demand Forecaster | MAE | ~102 appointments/day |
+~109,600 appointment records including patient demographics, appointment details, health conditions, and local weather data.
+- **Features Used:** 29
+- **Target Variables:** `no_show` (classification) and daily appointment count (regression)
+
+## 🎯 Model Results
+
+### No-Show Prediction (XGBoost Classifier)
+
+| Metric | Score |
+|---|---|
+| F1-score | 0.63 |
+| ROC-AUC | 0.78 |
+
+### Demand Forecasting (XGBoost Regressor)
+
+| Metric | Score |
+|---|---|
+| R² | 0.62 |
+| MAE | ~102 appointments/day |
 
 ## 📁 Project Structure
 
@@ -28,26 +41,34 @@ Includes a trained model pipeline (Jupyter/Colab notebook) and an interactive **
 └── README.md                                  # You are here
 ```
 
-## 🧠 What's in the Notebook
+## 🧠 Notebook Pipeline
 
-1. Data loading & cleaning (missing values, type fixes)
-2. Exploratory data analysis (demographics, weather, appointment patterns)
-3. Feature engineering (calendar features, health condition flags, lag/rolling demand features)
-4. **Classification**: no-show prediction (Logistic Regression, Random Forest, XGBoost compared)
-5. **Regression**: daily demand forecasting (Linear Regression, Random Forest, XGBoost compared, chronological split)
-6. Model evaluation (F1, ROC-AUC, MAE, RMSE, R², MAPE)
-7. Artifact export → `model_bundle.pkl` + `data_bundle.pkl` for the dashboard
+### Exploratory Data Analysis (EDA)
+Missing value analysis, class distribution, age & gender analysis, appointment patterns, weather analysis, correlation analysis.
 
-Run it in Google Colab or Jupyter — just update `DATA_PATH` at the top to point to your CSV.
+### Feature Engineering
+
+**Classification features:** Year, Month, Day, Weekday, Week
+
+**Demand forecasting features:** Day of Week, Month, Quarter, Day, Lag 1/7/14, Rolling Mean (7/14 days)
+
+### Model Development
+
+1. **No-Show Classification** — Logistic Regression, Random Forest, XGBoost compared; XGBoost selected
+2. **Demand Regression** — Linear Regression, Random Forest, XGBoost compared; XGBoost selected
+3. Model evaluation (F1, ROC-AUC, MAE, RMSE, R², MAPE)
+4. Artifact export → `model_bundle.pkl` + `data_bundle.pkl` for dashboard
+
+Run in Google Colab or Jupyter — update `DATA_PATH` at the top to point to your CSV.
 
 ## 🖥️ Dashboard
 
 Three tools for clinic staff:
 - **No-Show Risk Predictor** — enter a patient's details, get a risk score
-- **Demand Forecasting** — pick any future date, get a predicted appointment count (with an optional specialty breakdown)
-- **Insights** — the key patterns behind both models
+- **Demand Forecasting** — pick any future date, get a predicted appointment count (with optional specialty breakdown)
+- **Insights** — key patterns behind both models
 
-### Run locally
+### Run Locally
 
 ```bash
 cd streamlit_app
@@ -55,12 +76,8 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-Full setup details, including how to regenerate the model files with your own data, are in [`streamlit_app/README.md`](streamlit_app/README.md).
+Full setup details, including how to regenerate model files with your own data, are in [`streamlit_app/README.md`](streamlit_app/README.md).
 
 ## 🛠️ Tech Stack
 
 Python · pandas · scikit-learn · XGBoost · Streamlit · Plotly
-
-## 📊 Dataset
-
-~109,600 appointment records including patient demographics, appointment details, health conditions, and local weather data.
