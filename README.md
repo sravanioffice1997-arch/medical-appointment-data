@@ -25,7 +25,7 @@ Includes a trained model pipeline (Jupyter/Colab notebook) and an interactive **
 
 | Metric | Score |
 |---|---|
-| R² | 0.62 |
+| R² | 0.72 |
 | MAE | ~102 appointments/day |
 
 ## 📁 Project Structure
